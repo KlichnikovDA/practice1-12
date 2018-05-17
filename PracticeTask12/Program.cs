@@ -10,6 +10,7 @@ namespace PracticeTask12
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
