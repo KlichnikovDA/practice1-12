@@ -68,7 +68,7 @@ namespace PracticeTask12
         static int[] Increment = new int[] { 1, 4, 10, 23, 57, 132, 301, 701, 1750};
 
         // Сортировка Шелла
-        public void SortShell(ref int[] Array)
+        public static void SortShell(ref int[] Array)
         {
             // Счетчики сравнений и перестановок
             int ComparesCounter = 0, ReplacesCounter = 0;
@@ -109,50 +109,59 @@ namespace PracticeTask12
 
             // Выводим результаты сортировки:
             Console.WriteLine("Отсортированный методом Шелла массив:");
-            foreach (int item in Array)
-                Console.Write(item + " ");
-            Console.WriteLine("При сортировке массива было выполнено {0} сравнений и {1} перестановок.", ComparesCounter, ReplacesCounter);
+            PrintArray(Array);
+            Console.WriteLine("При сортировке массива было выполнено {0} сравнений и {1} перестановок.\n", ComparesCounter, ReplacesCounter);
         }
 
         // Быстрая сортировка
         // Для реализации было выбрано разбиение Хоара
-        public void QuickSort(ref int[] Array, int IndexFirst, int IndexLast, ref int ComparesCount, ref int ReplacesCount)
+        public static void QuickSort(ref int[] Array, int IndexFirst, int IndexLast, ref int ComparesCount, ref int ReplacesCount)
         {
-            // Счетчики сравнений и перестановок
+            if (IndexFirst > IndexLast)
+                return;
             // Опорный элемент, в данном случае - средний
             int Pivot = Array[(IndexLast - IndexFirst) / 2];
             // Вспомогательные переменные для прохода по массиву
             int i = IndexFirst, j = IndexLast;
             // Проход по массиву
-            while (i <= j)
+            while (i < j)
             {
                 // Поиск опорного элемента
                 while (Array[i] < Pivot)
+                {
+                    ComparesCount++;
                     i++;
-                while (Array[j] >= Pivot)
+                }
+                while (Array[j] > Pivot)
+                {
+                    ComparesCount++;
                     j--;
+                }
 
                 // Если не дошли до середины массива
                 if (i < j)
                 {
+                    ComparesCount++;
                     // Вспомогательная переменная для перестановки элементов
                     int Temp = Array[i];
                     Array[i++] = Array[j];
                     Array[j--] = Temp;
+                    ReplacesCount++;
                 }
 
                 // Сортировка частей, на которые был разделен массив
                 QuickSort(ref Array, IndexFirst, j, ref ComparesCount, ref ReplacesCount);
-                QuickSort(ref Array, i, IndexLast, ref ComparesCount, ref ReplacesCount);
+                QuickSort(ref Array, i+1, IndexLast, ref ComparesCount, ref ReplacesCount);
             }
         }
         #endregion Sort
 
         // Печать массива
-        public void PrintArray(int[] Array)
+        public static void PrintArray(int[] Array)
         {
             foreach (int Item in Array)
                 Console.Write("{0} ", Item);
+            Console.WriteLine("\n");
         }
     }
 }
