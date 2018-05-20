@@ -46,9 +46,9 @@ namespace PracticeTask12
         int[] GenerateSortedArray(int Size, int Order)
         {
             int[] Array = new int[Size];
-            Array[0] = rnd.Next(-10, 10);
+            Array[0] = rnd.Next(10);
             for (ushort i = 1; i < Size; i++)
-                Array[i] = rnd.Next(10) + Array[i-1]*Order + 1*Order;
+                Array[i] = Array[i-1] + (rnd.Next(10) + 1)*Order;
             return Array;
         }
 
@@ -116,8 +116,9 @@ namespace PracticeTask12
 
         // Быстрая сортировка
         // Для реализации было выбрано разбиение Хоара
-        public void QuickSort(ref int[] Array, int IndexFirst, int IndexLast)
+        public void QuickSort(ref int[] Array, int IndexFirst, int IndexLast, ref int ComparesCount, ref int ReplacesCount)
         {
+            // Счетчики сравнений и перестановок
             // Опорный элемент, в данном случае - средний
             int Pivot = Array[(IndexLast - IndexFirst) / 2];
             // Вспомогательные переменные для прохода по массиву
@@ -141,10 +142,17 @@ namespace PracticeTask12
                 }
 
                 // Сортировка частей, на которые был разделен массив
-                QuickSort(ref Array, IndexFirst, j);
-                QuickSort(ref Array, i, IndexLast);
+                QuickSort(ref Array, IndexFirst, j, ref ComparesCount, ref ReplacesCount);
+                QuickSort(ref Array, i, IndexLast, ref ComparesCount, ref ReplacesCount);
             }
         }
         #endregion Sort
+
+        // Печать массива
+        public void PrintArray(int[] Array)
+        {
+            foreach (int Item in Array)
+                Console.Write("{0} ", Item);
+        }
     }
 }
