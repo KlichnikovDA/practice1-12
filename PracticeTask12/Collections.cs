@@ -33,11 +33,11 @@ namespace PracticeTask12
             switch (Order)
             {
                 case 1:
-                    return SortedInc;
+                    return SortedInc.ToArray();
                 case -1:
-                    return SortedDec;
+                    return SortedDec.ToArray();
                 default:
-                    return Unsorted;
+                    return Unsorted.ToArray();
             }
         }
 
@@ -138,10 +138,9 @@ namespace PracticeTask12
                     j--;
                 }
 
-                // Если не дошли до середины массива
+                // Если не дошли до опорного элемента
                 if (i < j)
                 {
-                    ComparesCount++;
                     // Вспомогательная переменная для перестановки элементов
                     int Temp = Array[i];
                     Array[i++] = Array[j];

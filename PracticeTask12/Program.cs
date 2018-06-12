@@ -44,18 +44,16 @@ namespace PracticeTask12
             int ComparesCounter = 0, ReplacesCounter = 0;
 
             Console.WriteLine("Результат сортировки упорядоченного по возрастанию массива быстрой сортировкой:");
-            Collections.QuickSort(ref ArrInc, 0, ArrInc.Length-1, ref ComparesCounter, ref ReplacesCounter);
+            Collections.QuickSort(ref ArrInc, 0, ArrInc.Length - 1, ref ComparesCounter, ref ReplacesCounter);
             Collections.PrintArray(ArrInc);
             Console.WriteLine("При сортировке массива было выполнено {0} сравнений и {1} перестановок.\n", ComparesCounter, ReplacesCounter);
-            ComparesCounter = 0;
-            ReplacesCounter = 0;
+            ComparesCounter = ReplacesCounter = 0;
 
             Console.WriteLine("Результат сортировки упорядоченного по убыванию массива быстрой сортировкой:");
             Collections.QuickSort(ref ArrDec, 0, ArrInc.Length - 1, ref ComparesCounter, ref ReplacesCounter);
             Collections.PrintArray(ArrDec);
             Console.WriteLine("При сортировке массива было выполнено {0} сравнений и {1} перестановок.\n", ComparesCounter, ReplacesCounter);
-            ComparesCounter = 0;
-            ReplacesCounter = 0;
+            ComparesCounter = ReplacesCounter = 0;
 
             Console.WriteLine("Результат сортировки неупорядоченного массива быстрой сортировкой:");
             Collections.QuickSort(ref ArrUns, 0, ArrInc.Length - 1, ref ComparesCounter, ref ReplacesCounter);
